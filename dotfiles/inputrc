@@ -1,0 +1,8 @@
+"\e[B": history-search-forward
+"\e[A": history-search-backward
+
+$if Bash
+	Space: magic-space
+$endif
+
+$include /etc/inputrc

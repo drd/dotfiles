@@ -1,0 +1,71 @@
+shopt -s histappend
+PROMPT_COMMAND='history -a'
+
+PYTHONSTARTUP=~/.pythonrc
+
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+   . $(brew --prefix)/etc/bash_completion
+   . ~/.bash_git
+fi
+PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
+# PS1='\u @ \h > '
+GIT_PS1_SHOWDIRTYSTATE=true
+
+export HISTIGNORE="&:ls:[bf]g:exit"
+export EDITOR='/usr/bin/vim'
+
+# aliases with a trailing space check for the next command to be an alias
+alias sudo='sudo '
+
+alias emacs='open -a emacs'
+alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs'
+export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs'
+
+function edp() {
+    /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs ~/.bash_profile
+    . ~/.bash_profile
+}
+
+complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
+
+alias gst='git status'
+alias gl='git pull'
+alias gp='git push'
+alias gd='git diff | mate'
+alias gc='git commit -v'
+alias gca='git commit -v -a'
+alias gcb='git checkout -b'
+alias gco='git checkout'
+alias gb='git branch'
+alias gba='git branch -a'
+alias glp='git log --pretty=format:"%h %an %ar %s"'
+
+
+function up() {
+    local CURDIR=`pwd`
+
+    while ( [ ! -e './.hg' ] && [ ! -e './.git' ] ) && [ `pwd` != '/' ]
+    do
+        cd ..
+    done
+
+    if [ ! -e './.hg' ] && [ ! -e './.git' ]
+    then
+        cd $CURDIR
+    fi
+}
+
+
+alias ctlup="devctl upgrade"
+
+# {{{
+# Node Completion - Auto-generated, do not touch.
+# shopt -s progcomp
+# for f in $(command ls ~/.node-completion); do
+#   f="$HOME/.node-completion/$f"
+#   test -f "$f" && . "$f"
+# done
+# }}}
+
+export PATH=/usr/local/bin:~/libexec/devtools/bin:~/.brew/bin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
