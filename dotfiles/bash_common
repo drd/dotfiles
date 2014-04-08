@@ -35,6 +35,9 @@ alias gco='git checkout'
 alias gb='git branch'
 alias gba='git branch -a'
 alias glp='git log --pretty=format:"%h %an %ar %s"'
+alias gpoh='git push origin HEAD'
+alias gpom='git push origin master'
+alias gpod='git push origin develop'
 
 
 
