@@ -1,0 +1,19 @@
+### some ubuntu defaults ###
+
+. ~/.bash_ubuntu
+
+### prefix ###
+
+BASH_COMPLETION = /etc/bash_completion
+
+
+
+### common ###
+
+. ~/.bash_common
+
+
+
+### idealist ###
+
+export PATH="/idealist/sbin:$PATH"
