@@ -1,6 +1,6 @@
 ### prefix ###
 
-BASH_COMPLETION = $(brew --prefix)/etc/bash_completion
+export _BASH_COMPLETION=$(brew --prefix)/etc/bash_completion
 
 
 

@@ -10,8 +10,8 @@ HISTCONGROL=ignoredups:ignorespace
 
 ### completion ###
 
-if [ -f $BASH_COMPLETION ]; then
-   . $BASH_COMPLETION
+if [ -f $_BASH_COMPLETION ]; then
+   . $_BASH_COMPLETION
 fi
 
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
@@ -27,7 +27,7 @@ alias sudo='sudo '
 alias gst='git status'
 alias gl='git pull'
 alias gp='git push'
-alias gd='git diff | mate'
+alias gd='git diff'
 alias gc='git commit -v'
 alias gca='git commit -v -a'
 alias gcb='git checkout -b'

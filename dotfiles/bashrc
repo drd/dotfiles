@@ -4,13 +4,13 @@
 
 ### prefix ###
 
-BASH_COMPLETION = /etc/bash_completion
+export _BASH_COMPLETION=/etc/bash_completion
 
 
 
 ### common ###
 
-. ~/.bash_common
+source ~/.bash_common
 
 
 
