@@ -40,6 +40,10 @@ alias gpoh='git push origin HEAD'
 alias gpom='git push origin master'
 alias gpod='git push origin develop'
 
+function gfu() {
+  BRANCH=$(git symbolic-ref HEAD | sed "s/refs\/heads\///") 
+  git branch --set-upstream-to=origin/$BRANCH $BRANCH
+}
 
 # idealist
 
