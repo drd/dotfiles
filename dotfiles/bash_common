@@ -41,6 +41,11 @@ alias gpom='git push origin master'
 alias gpod='git push origin develop'
 
 
+# idealist
+
+alias i64='ssh ido64'
+alias i3='cd ~/work/app-ido=i3; source develop'
+
 
 ### python ###
 
