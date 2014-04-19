@@ -45,10 +45,16 @@ function gfu() {
   git branch --set-upstream-to=origin/$BRANCH $BRANCH
 }
 
-# idealist
+function gro() {
+  BRANCH=$(git symbolic-ref HEAD | sed "s/refs\/heads\///") 
+  git rebase origin $BRANCH
+}
 
+
+# idealist
 alias i64='ssh ido64'
 alias i3='cd ~/work/app-ido=i3; source develop'
+
 
 
 ### python ###
