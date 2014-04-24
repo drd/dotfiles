@@ -3,11 +3,23 @@ ExitOnForwardFailure yes
 KeepAlive yes
 EscapeChar ~
 
-Host *.lomo.sys
-	User command
 
-Host *.bife.sys
-	User command
+###[ Personal ]###
+
+Host arpy
+        HostName 174.136.106.130
+        User eric
+        Port 31415
+
+Host compassing.net
+	Port 31415
+
+Host roundpeg
+	HostName roundpegdesigns.com
+	User roundpeg
+
+
+###[ Mikey ]###
 
 Host stremmel
 	HostName stremmelgallery.com
@@ -17,56 +29,49 @@ Host cda
 	HostName cdaartauction.com
 	User cdaart
 
-Host ikonix
-	HostName ikonix.compassing.net
-	User eric
-	Port 31416
-
-Host ikonix-deploy
-	HostName ikonix.compassing.net
-	User deploy
-	Port 31416
-
-Host compassing.net
-	Port 31415
-
-Host roundpeg
-	HostName roundpegdesigns.com
-	User roundpeg
-
-Host gruyere
-	HostName gruyere.local
-	User administrator
-
 Host highdive
-  HostName highdivelowdive.net
-  User highdivelowdive
+        HostName highdivelowdive.net
+        User highdivelowdive
   
+Host cdavps
+        HostName vps.cdaartauction.com
+        User cda_vps
+
+Host maffett.com
+        User fhmaffett
+
+
+
+###[ Idealist ]###
+
+Host axon
+     IdentityFile ~/.ssh/idealist_rsa
+
+Host ido
+     IdentityFile ~/.ssh/idealist_rsa
+     HostName axon
+     Port 23
+
 Host *.idealist.org
      IdentityFile ~/.ssh/idealist_rsa
 
 Host *.awbdev.org
      IdentityFile ~/.ssh/idealist_rsa
 
-Host cdavps
-     HostName vps.cdaartauction.com
-     User cda_vps
-
-Host arpy
-     HostName 174.136.106.130
-     User eric
-     Port 31415
-
-Host maffett.com
-     User fhmaffett
-
-Host bitbucket.org
-     PreferredAuthentications publickey
-     IdentityFile ~/.ssh/idealist_rsa
-
-Host ubuntu.dev.sys
+Host *.dev.sys
      User eric
      IdentityFile ~/.ssh/idealist_rsa
 
 Host *.vpn
      User command
+
+Host *.lomo.sys
+	User command
+
+Host *.bife.sys
+	User command
+
+Host bitbucket.org
+     PreferredAuthentications publickey
+     IdentityFile ~/.ssh/idealist_rsa
+
