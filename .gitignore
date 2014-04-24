@@ -1,2 +1,2 @@
-dotfiles/.ssh/id_rsa
-dotfiles/.ssh/idealist_rsa
+dotfiles/ssh/id_rsa
+dotfiles/ssh/idealist_rsa
