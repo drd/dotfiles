@@ -1,20 +1,47 @@
+[push]
+# Safety first! Only `git push` the current branch by default instead of all branches that exist on the remote
+default = upstream
+
+[core]
+excludesfile = HOME_DIR/.gitignore
+whitespace = trailing-space,space-before-tab
+
+[advice]
+statusHints = false # More concise output
+
+[diff]
+mnemonicprefix = true
+
+
 [user]
 	name = Eric O'Connell
-	email = eric.oconnell@idealist.org
+	email = eric@premise.com
+
 [color]
-	ui = auto
+ui = auto
+
 [core]
-	excludesfile = /Users/eric/.gitignore_global
+excludesfile = /Users/eric/.gitignore_global
+
 [github]
-	user = drd
-	token = c5855970b2e1862c46b5320a7f747a4b
+user = drd
+token = c5855970b2e1862c46b5320a7f747a4b
+
 [merge]
-	conflictstyle = diff3
+conflictstyle = diff3
+
 [credential]
-	helper = osxkeychain
-[difftool "sourcetree"]
-	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
-	path = 
-[mergetool "sourcetree"]
-	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
-	trustExitCode = true
+helper = osxkeychain
+
+[alias]
+# Use `git ls` as a usable-by-default `git log`
+ls = log --pretty=my-oneline --decorate --graph --date=relative -25
+
+[pretty]
+# Used by `git ls` (above)
+my-oneline = %C(yellow)%h%C(reset) %C(magenta)%cd%C(reset) %C(bold blue)%an%C(reset) %s%C(bold yellow)%d%C(reset)
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true

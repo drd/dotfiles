@@ -10,15 +10,15 @@ HISTCONGROL=ignoredups:ignorespace
 
 ### completion ###
 
-if [ -f $_BASH_COMPLETION ]; then
-   . $_BASH_COMPLETION
-fi
-
 complete -W "$(echo `cat ~/.ssh/known_hosts | cut -f 1 -d ' ' | sed -e s/,.*//g | uniq | grep -v "\["`;)" ssh
 
 
 
 ### aliases ###
+
+function intellij() {
+	open $1 -a 'IntelliJ IDEA CE'
+}
 
 # aliases with a trailing space check for the next command to be an alias
 alias sudo='sudo '
@@ -41,20 +41,25 @@ alias gpom='git push origin master'
 alias gpod='git push origin develop'
 
 function gfu() {
-  BRANCH=$(git symbolic-ref HEAD | sed "s/refs\/heads\///") 
+  BRANCH=$(git symbolic-ref HEAD | sed "s/refs\/heads\///")
   git branch --set-upstream-to=origin/$BRANCH $BRANCH
 }
 
 function gro() {
-  BRANCH=$(git symbolic-ref HEAD | sed "s/refs\/heads\///") 
+  BRANCH=$(git symbolic-ref HEAD | sed "s/refs\/heads\///")
   git rebase origin $BRANCH
 }
 
+function release_branches() {
+	git branch | grep \\srelease\-
+}
 
-# idealist
-alias i64='ssh ido64'
-alias i3='cd ~/work/app-ido=i3; source develop'
-
+function cleanup_releases() {
+	echo "Current release branches:"
+	release_branches
+	read -p "Hit enter to delete these local branches, or ^C to cancel: "
+	for b in $(release_branches); do git branch -D $b; done
+}
 
 
 ### python ###
@@ -65,7 +70,7 @@ PYTHONSTARTUP=~/.pythonrc
 
 ### git ###
 
-. ~/.bash_git
+. ~/dotfiles/dotfiles/bash_git
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 GIT_PS1_SHOWDIRTYSTATE=true
 
@@ -73,7 +78,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 
 ### functions ###
 
-# hop to the top 
+# hop to the top
 function up() {
     local CURDIR=`pwd`
     while ( [ ! -e './.hg' ] && [ ! -e './.git' ] ) && [ `pwd` != '/' ]
@@ -83,6 +88,8 @@ function up() {
     if [ ! -e './.hg' ] && [ ! -e './.git' ]
     then
         cd $CURDIR
+    else
+        export OLDPWD=$CURDIR
     fi
 }
 
@@ -90,4 +97,4 @@ function up() {
 
 ### exports ###
 
-export PATH=/usr/local/bin:~/devtools/bin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin
+export PATH=/usr/local/go/bin:/usr/local/bin:~/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin

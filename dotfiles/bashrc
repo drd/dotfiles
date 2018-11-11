@@ -17,3 +17,5 @@ source ~/.bash_common
 ### idealist ###
 
 export PATH="/idealist/sbin:$PATH"
+# added by travis gem
+[ -f /Users/ericoconnell/.travis/travis.sh ] && source /Users/ericoconnell/.travis/travis.sh

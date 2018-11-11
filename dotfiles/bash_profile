@@ -1,27 +1,25 @@
 ### prefix ###
 
-export _BASH_COMPLETION=$(brew --prefix)/etc/bash_completion
+#export BASH_COMPLETION_DEBUG="yeah"
+set +v +e
 
-
-
-### common ###
-
-. ~/.bash_common
-
-
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  source $(brew --prefix)/etc/bash_completion
+fi
 
 ### emacs shenanigans ###
 
-alias emacs='open -a emacs'
-alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
-alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs'
-export EDITOR='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs'
+# alias emacs='open -a emacs'
+# alias emacsclient='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient'
+# alias ec='/Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs'
+export EDITOR='/usr/bin/emacs'
 
 # port to common, figure out aliases
 function edp() {
     /Applications/Emacs.app/Contents/MacOS/bin/emacsclient -a /Applications/Emacs.app/Contents/MacOS/Emacs ~/.bash_profile
     . ~/.bash_profile
 }
+
 
 
 # TODO: fix
@@ -33,4 +31,21 @@ function edp() {
 #   test -f "$f" && . "$f"
 # done
 # }}}
+
+### common ###
+
+. ~/.bash_common
+. ~/.premiserc
+
+export PATH="$HOME/Library/Android/sdk/platform-tools:$HOME/Library/Android/sdk/emulator:$PATH"
+
+### gcloud ###
+. ~/gcloud/google-cloud-sdk/completion.bash.inc
+. ~/gcloud/google-cloud-sdk/path.bash.inc
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/ericoconnell/gcloud/google-cloud-sdk/path.bash.inc' ]; then source '/Users/ericoconnell/gcloud/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/ericoconnell/gcloud/google-cloud-sdk/completion.bash.inc' ]; then source '/Users/ericoconnell/gcloud/google-cloud-sdk/completion.bash.inc'; fi
 
